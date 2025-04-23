@@ -41,7 +41,7 @@ public class TelaConversor {
 		JButton buttonLimpar = new JButton("Limpar");
 		
 		
-		// Definir posições e tamanhos dos componentes
+		//Definir posições e tamanhos dos componentes
 		labelConvertendo.setBounds(20, 20, 150, 30);
 		txtConvertendo.setBounds(170, 20, 100, 30);
 		labelFahrenheit.setBounds(20, 60, 150, 30);
