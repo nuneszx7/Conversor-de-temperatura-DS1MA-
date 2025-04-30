@@ -1,7 +1,8 @@
 package br.dev.nunes.conversor.gui;
 
-
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,55 +10,132 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
+import br.dev.nunes.conversor.model.Temperatura;
+
+
 public class TelaConversor {
 
-	public void criarTela(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-	public static void main(String[] args) {
-		
-		
-		// Criar o JFrame
-		JFrame frame = new JFrame("Conversor");
-		frame.setSize(300, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(null);
-		
-		
-		// Criar o painel de conteúdo
-		Container container = frame.getContentPane();
-		container.setLayout(null);
-		
-		
-		// Criar os componentes
-		JLabel labelConvertendo = new JLabel("Convertendo de celsius: ");
-		JLabel labelFahrenheit = new JLabel("Fahrenheit : ");	
-		JLabel labelKelvin = new JLabel("Kelvin: ");
-		JTextField txtConvertendo = new JTextField();
-		JTextField txtFahrenheit = new JTextField();
-		JTextField txtKelvin = new JTextField();
-		JButton buttonConverter = new JButton("Converter");
-		JButton buttonLimpar = new JButton("Limpar");
-		
-		
-		//Definir posições e tamanhos dos componentes
-		labelConvertendo.setBounds(20, 20, 150, 30);
-		txtConvertendo.setBounds(170, 20, 100, 30);
-		labelFahrenheit.setBounds(20, 60, 150, 30);
-		txtFahrenheit.setBounds(170, 60, 100, 30);
-		labelKelvin.setBounds(20, 100, 150, 30);
-		txtKelvin.setBounds(170, 100, 100, 30);
-		buttonConverter.setBounds(20, 140, 100, 30);
-		buttonLimpar.setBounds(130, 140, 100, 30);
-		
-		
-		
-			
-	}
-		
-	
-	
-	
-	
+    private JTextField txtCelsius;
+    private JTextField txtFahrenheit;
+    private JTextField txtKelvin;
+
+    public void criarTelaConversor() {
+        
+    	
+        //JFrame
+        JFrame frame = new JFrame("Conversor de Temperatura");
+        frame.setSize(500, 250);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+        
+        
+        //painel de conteúdo
+        Container container = frame.getContentPane();
+        container.setLayout(null);
+        
+        
+        //componentes
+        JLabel labelCelsius = new JLabel("Celsius:");
+        JLabel labelFahrenheit = new JLabel("Fahrenheit:");
+        JLabel labelKelvin = new JLabel("Kelvin:");
+        
+        
+        txtCelsius = new JTextField();
+        txtFahrenheit = new JTextField();
+        txtFahrenheit.setEditable(false); 		//resultado
+        txtKelvin = new JTextField();
+        txtKelvin.setEditable(false);     		//resultado
+        
+        
+        JButton buttonConverter = new JButton("Converter");
+        JButton buttonLimpar = new JButton("Limpar");
+        
+        
+        //tamanho/posição
+        labelCelsius.setBounds(230, 20, 150, 30);
+        txtCelsius.setBounds(180, 40, 150, 30);
+        
+        
+        labelFahrenheit.setBounds(10, 100, 150, 30);
+        txtFahrenheit.setBounds(90, 100, 110, 30);
+        
+        
+        labelKelvin.setBounds(320, 100, 150, 30);
+        txtKelvin.setBounds(370, 100, 110, 30);
+        
+        
+        buttonConverter.setBounds(100, 150, 100, 40);
+        buttonLimpar.setBounds(330, 150, 100, 40);
+        
+        
+        //componentes no container
+        container.add(labelCelsius);
+        container.add(txtCelsius);
+        container.add(labelFahrenheit);
+        container.add(txtFahrenheit);
+        container.add(labelKelvin);
+        container.add(txtKelvin);
+        container.add(buttonConverter);
+        container.add(buttonLimpar);
+        
+        
+        //action listener dos botoes
+        buttonConverter.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                converter();
+                
+            }
+            
+            
+        });
+        
+        
+        buttonLimpar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                limpar();
+                
+            }
+            
+            
+        });
+        
+        frame.setVisible(true);
+        
+    }
+    
+    private void converter() {
+        try {
+        	
+            double celsius = Double.parseDouble(txtCelsius.getText());
+            Temperatura temp = new Temperatura();
+            temp.setCelsius(celsius);
+            
+            
+            double fahrenheit = temp.converterParaFahrenheit();
+            double kelvin = temp.converterParaKelvin();
+            
+            
+            txtFahrenheit.setText(String.format("%.1f", fahrenheit));
+            txtKelvin.setText(String.format("%.2f", kelvin));
+            
+            
+        } catch (NumberFormatException ex) {
+            txtFahrenheit.setText("Erro");
+            txtKelvin.setText("Erro");
+            
+        }
+        
+    }
+    
+    private void limpar() {
+        txtCelsius.setText("");
+        txtFahrenheit.setText("");
+        txtKelvin.setText("");
+        
+    }
+    
+    public static void main(String[] args) {
+        new TelaConversor().criarTelaConversor();
+    }
+    
 }

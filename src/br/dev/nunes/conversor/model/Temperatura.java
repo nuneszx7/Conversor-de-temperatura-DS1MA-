@@ -3,12 +3,8 @@ package br.dev.nunes.conversor.model;
 public class Temperatura {
 	
 	private double celsius;
-	private double kelvin;
-	private double fahrenheit;
-	public double  converterParaKelvin;
 
-	
-	
+		
 	
 	public double getCelsius() {
 		return celsius;
@@ -21,22 +17,14 @@ public class Temperatura {
 	}
 	
 	public double  converterParaFahrenheit() {
-		return fahrenheit;
+		return (celsius * 9/5) + 32;
 		
 	}
 		
 	public double  converterParaKelvin() {
-		return kelvin;
+		return celsius + 273.15;
 		
 	}
-	
-		
-		
-	
-	
-	
-	
-	
 	
 	
 }
