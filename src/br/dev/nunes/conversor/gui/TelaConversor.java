@@ -51,7 +51,7 @@ public class TelaConversor {
         JButton buttonLimpar = new JButton("Limpar");
         
         
-        //tamanho/posição
+        //tamanho/posição dos campos
         labelCelsius.setBounds(230, 20, 150, 30);
         txtCelsius.setBounds(180, 40, 150, 30);
         
@@ -103,6 +103,7 @@ public class TelaConversor {
         
     }
     
+    //exceção para numeros (caso alguem tentar escrever uma palavra no campo "celsius")
     private void converter() {
         try {
         	
@@ -118,7 +119,7 @@ public class TelaConversor {
             txtFahrenheit.setText(String.format("%.1f", fahrenheit));
             txtKelvin.setText(String.format("%.2f", kelvin));
             
-            
+            //apenas formatos numéricos
         } catch (NumberFormatException ex) {
             txtFahrenheit.setText("Erro");
             txtKelvin.setText("Erro");
