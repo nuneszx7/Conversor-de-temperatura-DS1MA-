@@ -57,11 +57,11 @@ public class TelaConversor {
         
         
         labelFahrenheit.setBounds(10, 100, 150, 30);
-        txtFahrenheit.setBounds(90, 100, 110, 30);
+        txtFahrenheit.setBounds(85, 100, 120, 30);
         
         
-        labelKelvin.setBounds(320, 100, 150, 30);
-        txtKelvin.setBounds(370, 100, 110, 30);
+        labelKelvin.setBounds(310, 100, 150, 30);
+        txtKelvin.setBounds(358, 100, 125, 30);
         
         
         buttonConverter.setBounds(100, 150, 100, 40);
@@ -115,7 +115,7 @@ public class TelaConversor {
             double fahrenheit = temp.converterParaFahrenheit();
             double kelvin = temp.converterParaKelvin();
             
-            
+            //numero de casa(s) decimais
             txtFahrenheit.setText(String.format("%.1f", fahrenheit));
             txtKelvin.setText(String.format("%.2f", kelvin));
             
